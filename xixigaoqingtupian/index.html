@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>西西高清图片-高清图库与图片资源筛选指南</title>
+<meta name="description" content="西西高清图片是一个聚焦高清图片资源整理与筛选的站点，收录横屏壁纸、人像摄影、城市夜景、自然风光、产品静物等示例图集，提供分辨率标注、许可说明、拍摄参数与选图判断方法，帮助你在下载前看清尺寸、来源与使用边界。">
+<meta name="keywords" content="西西高清图片">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f5d4c'/%3E%3Crect x='12' y='16' width='40' height='32' rx='6' fill='none' stroke='%23f2e7c9' stroke-width='3'/%3E%3Ccircle cx='25' cy='28' r='5' fill='%23e8a13a'/%3E%3Cpath d='M16 44l12-13 9 9 6-5 7 9z' fill='%23f2e7c9'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#1b2320;
+  --ink-2:#3c4a45;
+  --muted:#6b7a74;
+  --line:#d8ded9;
+  --line-soft:#e8ece9;
+  --bg:#f7f6f2;
+  --card:#ffffff;
+  --brand:#1f5d4c;
+  --brand-deep:#14403４;
+  --brand-soft:#e3efe9;
+  --accent:#c8792a;
+  --accent-soft:#f8ead9;
+  --danger:#8d3b32;
+  --radius:12px;
+  --radius-sm:8px;
+  --shadow:0 1px 2px rgba(27,35,32,.06),0 6px 18px rgba(27,35,32,.05);
+  --font:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --fs-h1:clamp(1.9rem,4.4vw,2.9rem);
+  --fs-h2:clamp(1.25rem,2.4vw,1.6rem);
+  --fs-h3:1.06rem;
+  --fs-body:1rem;
+  --fs-sm:.875rem;
+  --fs-xs:.78rem;
+  --space:clamp(1rem,2.2vw,1.6rem);
+  --wrap:1180px;
+  --header-h:64px;
+  --notice-h:40px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition:none!important}
+}
+body{
+  margin:0;
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--ink);
+  font-size:var(--fs-body);
+  line-height:1.78;
+  -webkit-text-size-adjust:100%;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3{line-height:1.35;margin:0}
+p{margin:0 0 .85em}
+ul,ol{margin:0 0 .9em;padding-left:1.3em}
+li{margin-bottom:.35em}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 clamp(.9rem,3vw,1.6rem)}
+[id]{scroll-margin-top:calc(var(--header-h) + var(--notice-h) + 12px)}
+
+/* 公告条 + 页头 联合吸顶 */
+.sticky-top{position:sticky;top:0;z-index:60}
+.notice{
+  height:var(--notice-h);
+  background:var(--brand-deep);
+  color:#f2e7c9;
+  font-size:var(--fs-xs);
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+.notice .wrap{display:flex;align-items:center;gap:.6rem;white-space:nowrap}
+.notice .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+.notice-track{overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.notice a{color:#ffe4b8;text-decoration:underline;text-decoration-color:rgba(255,228,184,.45)}
+
+.site-header{
+  height:var(--header-h);
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;
+}
+.header-inner{display:flex;align-items:center;gap:1rem;width:100%}
+.brand{display:flex;align-items:center;gap:.55rem;flex:none}
+.brand svg{width:34px;height:34px;flex:none}
+.brand-name{font-weight:800;font-size:1.05rem;letter-spacing:.02em;color:var(--ink)}
+.nav{display:flex;gap:.15rem;flex-wrap:wrap;margin-left:auto}
+.nav a{
+  display:inline-block;padding:.42rem .6rem;border-radius:999px;
+  font-size:var(--fs-sm);color:var(--ink-2);
+}
+.nav a:hover,.nav a.is-active{background:var(--brand-soft);color:var(--brand);text-decoration:none}
+.header-tools{display:flex;align-items:center;gap:.5rem}
+.menu-btn{
+  display:none;align-items:center;gap:.4rem;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:.45rem .7rem;font:inherit;font-size:var(--fs-sm);color:var(--ink-2);cursor:pointer;
+}
+.menu-btn svg{width:16px;height:16px}
+
+/* 搜索 */
+.search{position:relative;display:flex;align-items:center}
+.search input{
+  font:inherit;font-size:var(--fs-sm);
+  padding:.44rem .7rem .44rem 2rem;
+  width:11.5rem;
+  border:1px solid var(--line);border-radius:999px;
+  background:var(--bg);color:var(--ink);
+}
+.search input:focus{background:#fff;border-color:var(--brand)}
+.search .ic{position:absolute;left:.62rem;width:14px;height:14px;pointer-events:none;color:var(--muted)}
+.search-result{
+  position:absolute;top:calc(100% + .4rem);right:0;width:17rem;max-width:82vw;
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);
+  box-shadow:var(--shadow);padding:.5rem;font-size:var(--fs-sm);display:none;
+}
+.search-result.show{display:block}
+.search-result li{list-style:none;margin:0}
+.search-result a{display:block;padding:.35rem .45rem;border-radius:6px;color:var(--ink-2)}
+.search-result a:hover{background:var(--brand-soft);text-decoration:none;color:var(--brand)}
+.search-result .empty{padding:.4rem .45rem;color:var(--muted)}
+
+/* 首屏 */
+.hero{
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(900px 320px at 88% -10%,rgba(31,93,76,.11),transparent 70%),
+    radial-gradient(600px 260px at 4% 110%,rgba(200,121,42,.10),transparent 70%),
+    var(--bg);
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(1.2rem,3vw,2.6rem);align-items:center;
+  padding:clamp(1.8rem,4vw,3.2rem) 0 clamp(1.6rem,3.4vw,2.6rem);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.45rem;
+  font-size:var(--fs-xs);letter-spacing:.08em;color:var(--brand);
+  background:var(--brand-soft);border-radius:999px;padding:.22rem .7rem;margin-bottom:.9rem;
+}
+.hero h1{font-size:var(--fs-h1);letter-spacing:-.01em;margin-bottom:.55rem}
+.hero-lead{font-size:clamp(.98rem,1.6vw,1.08rem);color:var(--ink-2);max-width:36rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.6rem 1.05rem;border-radius:999px;font-size:var(--fs-sm);font-weight:600;
+  border:1px solid transparent;cursor:pointer;font-family:inherit;
+  transition:transform .16s ease,background .16s ease;
+}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:#17493c}
+.btn-ghost{background:var(--card);border-color:var(--line);color:var(--ink-2)}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand)}
+.hero-stats{
+  display:flex;flex-wrap:wrap;gap:1.3rem;margin-top:1.4rem;
+  padding-top:1rem;border-top:1px solid var(--line-soft);
+}
+.hero-stats div{min-width:5.5rem}
+.hero-stats b{display:block;font-size:1.3rem;color:var(--brand);line-height:1.2}
+.hero-stats span{font-size:var(--fs-xs);color:var(--muted)}
+
+/* 首屏原创构图：网格拼贴 */
+.hero-art{
+  position:relative;aspect-ratio:5/4;border-radius:18px;
+  background:linear-gradient(150deg,#255f4d,#123a30 62%,#0d2b24);
+  box-shadow:var(--shadow);overflow:hidden;isolation:isolate;
+}
+.hero-art .frame{position:absolute;border-radius:10px;background:#f7f6f2;box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.f1{left:7%;top:9%;width:46%;height:40%;transform:rotate(-2.5deg)}
+.f2{right:8%;top:16%;width:34%;height:30%;background:#e8a13a;transform:rotate(3deg)}
+.f3{left:14%;bottom:10%;width:38%;height:26%;background:#cfe3da;transform:rotate(1.5deg)}
+.f4{right:12%;bottom:9%;width:27%;height:34%;background:#f2e7c9;transform:rotate(-3.5deg)}
+.hero-art svg.scene{position:absolute;inset:0;width:100%;height:100%}
+.hero-art .badge{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  background:rgba(247,246,242,.94);border-radius:999px;
+  padding:.34rem .85rem;font-size:var(--fs-xs);font-weight:700;color:var(--brand-deep);
+  letter-spacing:.06em;white-space:nowrap;
+}
+
+/* 主内容网格 */
+.layout{
+  display:grid;grid-template-columns:minmax(0,1fr) 288px;
+  gap:clamp(1.2rem,2.6vw,2rem);
+  padding:clamp(1.4rem,3vw,2.4rem) 0 3rem;
+}
+.side{display:flex;flex-direction:column;gap:1rem}
+.side-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1rem 1.05rem;box-shadow:var(--shadow);
+}
+.side-card h3{font-size:var(--fs-sm);letter-spacing:.04em;color:var(--muted);margin-bottom:.6rem;font-weight:700}
+.toc{list-style:none;padding:0;margin:0;font-size:var(--fs-sm)}
+.toc li{margin:0}
+.toc a{display:block;padding:.3rem .55rem;border-left:2px solid transparent;color:var(--ink-2);border-radius:0 6px 6px 0}
+.toc a:hover{background:var(--bg);text-decoration:none}
+.toc a.is-active{border-left-color:var(--brand);background:var(--brand-soft);color:var(--brand);font-weight:600}
+.side-list{list-style:none;padding:0;margin:0;font-size:var(--fs-sm)}
+.side-list li{padding:.4rem 0;border-bottom:1px dashed var(--line-soft);display:flex;justify-content:space-between;gap:.5rem}
+.side-list li:last-child{border-bottom:0}
+.side-list .n{color:var(--muted);font-size:var(--fs-xs);flex:none}
+
+/* 板块通用 */
+.section{margin-bottom:clamp(1.6rem,3.4vw,2.6rem)}
+.section-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;
+  margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--line);
+}
+.section-head h2{font-size:var(--fs-h2)}
+.section-head .more{font-size:var(--fs-sm);white-space:nowrap;flex:none}
+.section-desc{font-size:var(--fs-sm);color:var(--muted);margin:-.4rem 0 .9rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+
+/* 领域概览 */
+.overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:.2rem}
+.ov-item{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:.85rem .95rem}
+.ov-item b{display:block;font-size:.95rem;margin-bottom:.2rem}
+.ov-item p{font-size:var(--fs-sm);color:var(--ink-2);margin:0}
+.ov-item .tag{font-size:var(--fs-xs);color:var(--accent);font-weight:700}
+
+/* 精选网格卡片 */
+.pick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.pick-card{display:flex;flex-direction:column;overflow:hidden;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}
+.pick-card figure{margin:0;aspect-ratio:3/2;overflow:hidden;background:#e9ece8}
+.pick-card img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.pick-card:hover img{transform:scale(1.035)}
+.pick-body{padding:.8rem .9rem .9rem;display:flex;flex-direction:column;gap:.35rem;flex:1}
+.pick-body h3{font-size:1rem}
+.pick-body p{font-size:var(--fs-sm);color:var(--ink-2);margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:.35rem;font-size:var(--fs-xs);color:var(--muted)}
+.chip{display:inline-block;padding:.1rem .5rem;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-size:var(--fs-xs)}
+.chip.alt{background:var(--accent-soft);color:#8a4f14}
+
+/* 紧凑列表 */
+.updates{list-style:none;padding:0;margin:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);overflow:hidden}
+.updates li{display:grid;grid-template-columns:5.6rem minmax(0,1fr) auto;gap:.8rem;align-items:baseline;padding:.7rem .95rem;border-bottom:1px solid var(--line-soft)}
+.updates li:last-child{border-bottom:0}
+.updates time{font-size:var(--fs-xs);color:var(--muted);font-variant-numeric:tabular-nums}
+.updates .t{font-size:.95rem}
+.updates .t small{display:block;color:var(--muted);font-size:var(--fs-xs);margin-top:.1rem}
+.updates .u{font-size:var(--fs-xs);color:var(--muted);white-space:nowrap}
+
+/* 分类入口：标签索引 */
+.cat-index{display:flex;flex-wrap:wrap;gap:.5rem}
+.cat-index a{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.42rem .8rem;border:1px solid var(--line);border-radius:999px;
+  background:var(--card);font-size:var(--fs-sm);color:var(--ink-2);
+}
+.cat-index a b{color:var(--brand);font-weight:700}
+.cat-index a:hover{border-color:var(--brand);color:var(--brand);text-decoration:none}
+
+/* 深度解析 */
+.deep{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(1rem,2.4vw,1.7rem);box-shadow:var(--shadow)}
+.deep h3{font-size:var(--fs-h3);margin:1.3rem 0 .5rem;padding-left:.6rem;border-left:3px solid var(--brand)}
+.deep h3:first-child{margin-top:0}
+.deep p{color:var(--ink-2)}
+.deep p strong{color:var(--ink)}
+.pullquote{
+  margin:1rem 0;padding:.85rem 1rem;background:var(--bg);
+  border-left:3px solid var(--accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  font-size:.95rem;color:var(--ink);
+}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;margin:.9rem 0 1rem;font-size:var(--fs-sm)}
+.compare>div{padding:.6rem .8rem}
+.compare .h{background:var(--brand-soft);font-weight:700;color:var(--brand)}
+.compare .h.alt{background:var(--accent-soft);color:#8a4f14}
+.compare .c{border-top:1px solid var(--line-soft);color:var(--ink-2)}
+.compare .c:nth-child(3),.compare .c:nth-child(4){border-top:1px solid var(--line-soft)}
+.compare .c:nth-child(2n){border-left:1px solid var(--line-soft)}
+.verify{list-style:none;padding:0;margin:.8rem 0 1rem}
+.verify li{position:relative;padding:.45rem .6rem .45rem 1.6rem;background:var(--bg);border-radius:6px;font-size:var(--fs-sm);margin-bottom:.4rem}
+.verify li::before{content:"✓";position:absolute;left:.55rem;color:var(--brand);font-weight:700}
+
+/* 步骤 */
+.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:.7rem}
+.steps li{
+  counter-increment:s;position:relative;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius-sm);padding:.8rem .9rem .8rem 3.1rem;
+}
+.steps li::before{
+  content:counter(s,decimal-leading-zero);position:absolute;left:.85rem;top:.78rem;
+  font-size:.8rem;font-weight:800;color:#fff;background:var(--brand);
+  width:1.55rem;height:1.55rem;border-radius:50%;display:grid;place-items:center;
+}
+.steps b{display:block;font-size:.96rem;margin-bottom:.12rem}
+.steps p{font-size:var(--fs-sm);color:var(--ink-2);margin:0}
+
+/* FAQ */
+.faq details{border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--card);margin-bottom:.55rem;overflow:hidden}
+.faq summary{
+  cursor:pointer;padding:.72rem .9rem;font-weight:600;font-size:.95rem;
+  list-style-position:inside;display:flex;justify-content:space-between;gap:.6rem;align-items:baseline;
+}
+.faq summary::marker{content:""}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pm{color:var(--brand);font-weight:800;flex:none;transition:transform .2s ease}
+.faq details[open] summary .pm{transform:rotate(45deg)}
+.faq details[open] summary{background:var(--brand-soft);color:var(--brand)}
+.faq .a{padding:.1rem .95rem .85rem;font-size:var(--fs-sm);color:var(--ink-2)}
+
+/* 评论 */
+.comments{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.comment{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:.8rem .9rem;font-size:var(--fs-sm)}
+.comment .who{display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem}
+.avatar{width:26px;height:26px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:var(--fs-xs);font-weight:800;flex:none}
+.comment .who b{font-size:.86rem}
+.comment .who time{margin-left:auto;font-size:var(--fs-xs);color:var(--muted)}
+.comment p{margin:0;color:var(--ink-2)}
+.comment .ref{color:var(--brand);font-weight:600}
+
+/* 资讯 */
+.news{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.news article{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:.7rem .85rem}
+.news h3{font-size:.9rem;margin-bottom:.2rem}
+.news p{font-size:var(--fs-xs);color:var(--muted);margin:0}
+.news .src{color:var(--ink-2)}
+
+/* 相关推荐标签 */
+.tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.tags a{padding:.32rem .75rem;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:var(--fs-sm);color:var(--ink-2)}
+.tags a:hover{border-color:var(--accent);color:#8a4f14;text-decoration:none}
+
+/* 榜单 */
+.rank{list-style:none;padding:0;margin:0;display:grid;gap:.55rem}
+.rank li{display:grid;grid-template-columns:2rem minmax(0,1fr) 4.6rem;align-items:center;gap:.7rem;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:.55rem .8rem}
+.rank .rk{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+.rank .nm b{display:block;font-size:.92rem}
+.rank .nm small{color:var(--muted);font-size:var(--fs-xs)}
+.bar{height:6px;background:var(--line-soft);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),#4d9b7f);border-radius:99px}
+
+/* 时间线 */
+.timeline{list-style:none;padding:0 0 0 1.05rem;margin:0;border-left:2px solid var(--line)}
+.timeline li{position:relative;padding:0 0 .85rem 1rem}
+.timeline li::before{content:"";position:absolute;left:-1.42rem;top:.42rem;width:9px;height:9px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 3px var(--bg)}
+.timeline time{font-size:var(--fs-xs);color:var(--muted);display:block}
+.timeline b{font-size:.92rem}
+.timeline p{font-size:var(--fs-sm);color:var(--ink-2);margin:.12rem 0 0}
+
+/* 页尾 */
+.site-footer{background:#14332a;color:#c9d8d1;padding:clamp(1.8rem,3.6vw,2.8rem) 0 1.4rem;font-size:var(--fs-sm)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:1.4rem}
+.site-footer .brand-name{color:#fff}
+.site-footer h3{font-size:var(--fs-sm);color:#fff;letter-spacing:.04em;margin-bottom:.6rem}
+.site-footer ul{list-style:none;padding:0;margin:0}
+.site-footer li{margin-bottom:.35rem}
+.site-footer a{color:#c9d8d1}
+.site-footer a:hover{color:#fff}
+.footer-note{border-top:1px solid rgba(255,255,255,.14);margin-top:1.5rem;padding-top:.9rem;display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;justify-content:space-between;font-size:var(--fs-xs);color:#9db3aa}
+.footer-pos{font-size:var(--fs-sm);color:#dce8e2;margin:.5rem 0 .8rem;max-width:24rem}
+
+/* 回到顶部 */
+.to-top{
+  position:fixed;right:1rem;bottom:1.2rem;z-index:70;
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+  background:var(--card);color:var(--brand);box-shadow:var(--shadow);cursor:pointer;
+  display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:opacity .2s ease,transform .2s ease,visibility .2s;
+}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top svg{width:18px;height:18px}
+
+/* 响应式 */
+@media (max-width:1000px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .side{order:2}
+  .main-col{order:1}
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-art{max-width:520px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .pick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:820px){
+  .nav{
+    position:absolute;left:0;right:0;top:calc(var(--notice-h) + var(--header-h));
+    background:var(--card);border-bottom:1px solid var(--line);
+    flex-direction:column;padding:.5rem .9rem .8rem;display:none;gap:.1rem;
+    box-shadow:var(--shadow);
+  }
+  .nav.open{display:flex}
+  .nav a{padding:.6rem .5rem;border-radius:8px}
+  .menu-btn{display:inline-flex;order:-1}
+  .header-tools{margin-left:auto}
+  .overview{grid-template-columns:1fr}
+  .comments,.news{grid-template-columns:1fr}
+  .compare{font-size:var(--fs-xs)}
+  .updates li{grid-template-columns:4.6rem minmax(0,1fr);gap:.5rem}
+  .updates .u{grid-column:2;justify-self:start}
+}
+@media (max-width:640px){
+  :root{--header-h:58px;--notice-h:36px}
+  .search input{width:8.2rem}
+  .brand-name{font-size:.98rem}
+  .pick-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-stats{gap:1rem}
+  .to-top{bottom:1rem;right:.8rem}
+  .deep{padding:1rem}
+}
+@media (max-width:360px){
+  .search input{width:6.6rem;font-size:.8rem}
+  .brand svg{width:28px;height:28px}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="sticky-top">
+  <div class="notice" role="region" aria-label="站点更新公告">
+    <div class="wrap">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="notice-track">
+        <strong>11月8日更新</strong>：横屏壁纸合集新增 24 张 5120×2880 原图，产品静物图集补齐拍摄参数；
+        <a href="/#updates">查看更新明细</a>
+      </span>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mainNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        导航
+      </button>
+      <a class="brand" href="/#top" aria-label="西西高清图片首页">
+        <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#1f5d4c"/>
+          <rect x="12" y="16" width="40" height="32" rx="6" fill="none" stroke="#f2e7c9" stroke-width="3"/>
+          <circle cx="25" cy="28" r="5" fill="#e8a13a"/>
+          <path d="M16 44l12-13 9 9 6-5 7 9z" fill="#f2e7c9"/>
+        </svg>
+        <span class="brand-name">西西高清图片</span>
+      </a>
+      <nav class="nav" id="mainNav" aria-label="主题导航">
+        <a href="/#overview" class="is-active">图库概览</a>
+        <a href="/#pick">精选图集</a>
+        <a href="/#updates">更新记录</a>
+        <a href="/#cats">分类索引</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">选图指南</a>
+        <a href="/#faq">常见问题</a>
+      </nav>
+      <div class="header-tools">
+        <div class="search" role="search">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <label for="q" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">站内搜索</label>
+          <input id="q" type="search" placeholder="搜图集 / 分辨率" autocomplete="off">
+          <ul class="search-result" id="searchResult" aria-live="polite"></ul>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main id="top">
+
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">高清图库 · 分辨率可查 · 许可可核</span>
+        <h1 id="heroTitle">西西高清图片</h1>
+        <p class="hero-lead">收录横屏壁纸、人像写真、城市夜景、自然风光、产品静物五类图集。每张图标注像素尺寸、文件体积、拍摄设备与授权口径，下载前能先判断它能不能用在你需要的场景里。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/#pick">浏览精选图集</a>
+          <a class="btn btn-ghost" href="/#guide">学一遍选图流程</a>
+        </div>
+        <div class="hero-stats" aria-label="站点数据概览">
+          <div><b>1,268</b><span>在线示例图集</span></div>
+          <div><b>5</b><span>主题大类</span></div>
+          <div><b>4K+</b><span>原图分辨率占比</span></div>
+          <div><b>11-08</b><span>最近同步日</span></div>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <svg class="scene" viewBox="0 0 520 416" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2d7560"/>
+              <stop offset="1" stop-color="#123a30"/>
+            </linearGradient>
+            <pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse">
+              <path d="M26 0H0V26" fill="none" stroke="rgba(242,231,201,.11)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="520" height="416" fill="url(#sky)"/>
+          <rect width="520" height="416" fill="url(#grid)"/>
+          <circle cx="424" cy="72" r="30" fill="#e8a13a" opacity=".9"/>
+          <path d="M0 300l104-84 62 46 74-58 96 72 72-46 112 78v108H0z" fill="#0e2b23" opacity=".85"/>
+          <path d="M0 336l86-48 74 40 92-56 84 52 90-44 94 60v76H0z" fill="#0a201a" opacity=".9"/>
+        </svg>
+        <div class="frame f1"></div>
+        <div class="frame f2"></div>
+        <div class="frame f3"></div>
+        <div class="frame f4"></div>
+        <span class="badge">5120 × 2880 · 4K</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <div class="main-col">
+
+      <!-- 领域概览 -->
+      <section class="section" id="overview" aria-labelledby="ovTitle">
+        <div class="section-head">
+          <h2 id="ovTitle">图库概览：高清图片都收在哪几类里</h2>
+          <a class="more" href="/#cats">分类索引 →</a>
+        </div>
+        <p class="section-desc">图集的分类口径按"用途 + 拍摄对象"两轴切分。同一张城市夜景图，可能同时出现在横屏壁纸与建筑摄影里，下载时以主分类为准。</p>
+        <div class="overview">
+          <div class="ov-item">
+            <span class="tag">01 壁纸</span>
+            <b>横屏电脑壁纸</b>
+            <p>主流尺寸 3840×2160、5120×2880 两档，少数 3440×1440 带鱼屏。裁切后留白比例是关键。</p>
+          </div>
+          <div class="ov-item">
+            <span class="tag">02 人像</span>
+            <b>人像写真</b>
+            <p>棚拍与街头两类，棚拍给灯位图与镜头焦距，街头给版权说明与肖像授权状态。</p>
+          </div>
+          <div class="ov-item">
+            <span class="tag">03 夜景</span>
+            <b>城市夜景</b>
+            <p>长曝光与高感两类。前者注明曝光时长，后者注明机身与降噪设置，方便判断画质底线。</p>
+          </div>
+          <div class="ov-item">
+            <span class="tag">04 风光</span>
+            <b>自然风光</b>
+            <p>按地理区域归档，含高原、海岸、森林、沙漠。经纬度只标到区域级别，不精确到点位。</p>
+          </div>
+          <div class="ov-item">
+            <span class="tag">05 静物</span>
+            <b>产品静物</b>
+            <p>纯白背景与场景陈设两种布光。电商主图类附 800×800 与 1200×1200 两个导出规格。</p>
+          </div>
+          <div class="ov-item">
+            <span class="tag">06 授权</span>
+            <b>许可与署名</b>
+            <p>三类口径：可商用需署名、仅个人使用、需另行申请。每张图卡片角标直接写明类别。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 精选推荐 -->
+      <section class="section" id="pick" aria-labelledby="pickTitle">
+        <div class="section-head">
+          <h2 id="pickTitle">精选图集推荐</h2>
+          <a class="more" href="/#cats">更多分类 →</a>
+        </div>
+        <p class="section-desc">本周整理组按"分辨率达标、参数完整、许可清晰"三条筛出的图集，共 6 组。</p>
+        <div class="pick-grid">
+
+          <article class="pick-card">
+            <figure>
+              <img src="https://picsum.photos/seed/xixi-wall-4k/600/400" width="600" height="400" loading="lazy" alt="雪山湖泊横屏壁纸，湖面倒影清晰，远山带薄雾">
+            </figure>
+            <div class="pick-body">
+              <div class="meta"><span class="chip">横屏壁纸</span><span class="chip alt">5120×2880</span></div>
+              <h3>雪山湖泊 4K 横屏壁纸</h3>
+              <p>拍摄于青海湖东岸清晨 6 点 40 分，35mm 焦距，F8 光圈。桌面上图标落在左下湖面，干扰少。</p>
+            </div>
+          </article>
+
+          <article class="pick-card">
+            <figure>
+              <img src="https://picsum.photos/seed/xixi-portrait-studio/600/400" width="600" height="400" loading="lazy" alt="棚拍人像写真，模特侧身站立，柔光箱打亮左脸">
+            </figure>
+            <div class="pick-body">
+              <div class="meta"><span class="chip">人像写真</span><span class="chip alt">肖像授权注明</span></div>
+              <h3>棚拍人像·柔光侧脸组</h3>
+              <p>85mm 定焦，双灯配置，附灯位简图。肖像授权状态写为"仅个人练习使用，禁商用"。图内无品牌露标。</p>
+            </div>
+          </article>
+
+          <article class="pick-card">
+            <figure>
+              <img src="https://picsum.photos/seed/xixi-city-night/600/400" width="600" height="400" loading="lazy" alt="城市夜景长曝光，高架桥车流形成光轨，背景写字楼亮灯">
+            </figure>
+            <div class="pick-body">
+              <div class="meta"><span class="chip">城市夜景</span><span class="chip alt">长曝光 15s</span></div>
+              <h3>高架车流·夜景光轨</h3>
+              <p>曝光 15 秒，ISO 100，三脚架固定。原图 6000×4000，放大到 100% 有轻微星点噪点，缩到 4K 看不出。</p>
+            </div>
+          </article>
+
+          <article class="pick-card">
+            <figure>
+              <img src="https://picsum.photos/seed/xixi-forest-mist/600/400" width="600" height="400" loading="lazy" alt="清晨森林薄雾，阳光穿过杉树形成斜射光束">
+            </figure>
+            <div class="pick-body">
+              <div class="meta"><span class="chip">自然风光</span><span class="chip alt">可商用需署名</span></div>
+              <h3>杉林晨雾·斜射光束</h3>
+              <p>拍摄区域为浙江临安，5 点 50 分进山。署名格式在卡片底部给出，作者名与图集编号一并附上。</p>
+            </div>
+          </article>
+
+          <article class="pick-card">
+            <figure>
+              <img src="https://picsum.photos/seed/xixi-product-white/600/400" width="600" height="400" loading="lazy" alt="产品静物纯白背景，陶瓷杯侧放，左上角柔光形成环形高光">
+            </figure>
+            <div class="pick-body">
+              <div class="meta"><span class="chip">产品静物</span><span class="chip alt">两个导出规格</span></div>
+              <h3>陶瓷杯·纯白电商主图</h3>
+              <p>顶光加左侧柔光箱，白底 255 可直出。附 800×800 与 1200×1200 两版，边缘无压缩锯齿。</p>
+            </div>
+          </article>
+
+          <article class="pick-card">
+            <figure>
+              <img src="https://picsum.photos/seed/xixi-street-crowd/600/400" width="600" height="400" loading="lazy" alt="街头人像抓拍，行人撑伞走过雨后的石板路，背景虚化">
+            </figure>
+            <div class="pick-body">
+              <div class="meta"><span class="chip">街头人像</span><span class="chip alt">许可待确认</span></div>
+              <h3>雨后石板路·街头抓拍</h3>
+              <p>35mm，F2，1/250 秒。画面里可辨认的路人已做轻微虚化，但许可状态标为待确认，建议先联系作者。</p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- 最新更新 -->
+      <section class="section" id="updates" aria-labelledby="upTitle">
+        <div class="section-head">
+          <h2 id="upTitle">最新更新记录</h2>
+          <span class="more" style="color:var(--muted)">截至 11 月 8 日</span>
+        </div>
+        <ul class="updates">
+          <li>
+            <time datetime="2026-11-08">11-08 今天</time>
+            <span class="t">横屏壁纸合集补 24 张 5120×2880 原图
+              <small>新增图集编号 W-2401 至 W-2424，全部附拍摄地城市名。</small>
+            </span>
+            <span class="u">壁纸</span>
+          </li>
+          <li>
+            <time datetime="2026-11-07">11-07 昨天</time>
+            <span class="t">产品静物图集补齐灯位参数
+              <small>P-1102 至 P-1140 共 39 条，新增"柔光箱距离"字段。</small>
+            </span>
+            <span class="u">静物</span>
+          </li>
+          <li>
+            <time datetime="2026-11-05">11-05 本周</time>
+            <span class="t">城市夜景分类拆分长曝光与高感两类
+              <small>原"夜景"条目 216 条，拆后长曝光 132 条、高感 84 条。</small>
+            </span>
+            <span class="u">夜景</span>
+          </li>
+          <li>
+            <time datetime="2026-11-03">11-03 本周</time>
+            <span class="t">修正 12 条人像图集的许可口径
+              <small>其中 5 条由"可商用"改为"仅个人使用"，起因是作者转授权到期。</small>
+            </span>
+            <span class="u">授权</span>
+          </li>
+          <li>
+            <time datetime="2026-10-30">10-30 本周</time>
+            <span class="t">新增带鱼屏 3440×1440 筛选标签
+              <small>覆盖壁纸类 186 条，可在分类索引中直接点选。</small>
+            </span>
+            <span class="u">筛选</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 分类入口 -->
+      <section class="section" id="cats" aria-labelledby="catTitle">
+        <div class="section-head">
+          <h2 id="catTitle">分类索引：按用途与题材找图</h2>
+        </div>
+        <p class="section-desc">点选标签直接定位图集列表。括号内为当前条目数，数字随每周同步变动。</p>
+        <div class="cat-index">
+          <a href="/#pick"><b>横屏电脑壁纸</b>（412）</a>
+          <a href="/#pick"><b>4K 竖屏手机壁纸</b>（296）</a>
+          <a href="/#pick"><b>带鱼屏壁纸</b>（186）</a>
+          <a href="/#pick"><b>棚拍人像写真</b>（158）</a>
+          <a href="/#pick"><b>街头抓拍人像</b>（143）</a>
+          <a href="/#pick"><b>城市夜景长曝光</b>（132）</a>
+          <a href="/#pick"><b>城市夜景高感</b>（84）</a>
+          <a href="/#pick"><b>自然风光高原</b>（97）</a>
+          <a href="/#pick"><b>自然风光海岸</b>（88）</a>
+          <a href="/#pick"><b>产品静物白底图</b>（221）</a>
+          <a href="/#pick"><b>产品静物场景图</b>（164）</a>
+          <a href="/#pick"><b>可商用需署名</b>（530）</a>
+        </div>
+      </section>
+
+      <!-- 深度解析 -->
+      <section class="section" id="deep" aria-labelledby="deepTitle">
+        <div class="section-head">
+          <h2 id="deepTitle">深度解析：分辨率达标不等于能用</h2>
+        </div>
+        <div class="deep">
+
+          <h3>像素数达标，为什么导出后仍模糊</h3>
+          <p>以 R-1102 那张雪山湖为例：原图 5120×2880，共 1475 万像素，尺寸够 4K 屏。但放大到 100% 观察，湖面倒影区存在轻微涂抹，原因是压缩时把 JPEG 质量压到 68。判据很简单：<strong>看画面对角线方向的细节纹理</strong>。纹理区边缘发虚、色块出现 8×8 像素断口，说明压缩率偏高。缩到 1920 宽浏览没问题，做 27 寸屏保则会露怯。</p>
+          <div class="pullquote">一张图标着 5120×2880，不代表它在 5120 宽度下能看。分辨率告诉你画布有多大，压缩质量告诉你画布能装多少细节，两者要分开看。</div>
+          <p>实际统计里，W-2301 到 W-2400 这批壁纸有 37 张的文件体积低于同尺寸平均值 40%，逐张放大后确认 29 张有可见块状压缩痕迹。判断方法是把 EXIF 里的质量因子与文件体积对一遍，偏差过大就降级处理。</p>
+
+          <h3>像素、体积、编码三组数字怎么对</h3>
+          <p>2026 年 10 月 20 日整理组做过一次对照：同一张图，质量因子 90 的 JPEG 是 6.8 MB，质量 68 是 2.9 MB，换 AVIF 质量等效则是 1.4 MB。三版在 27 寸 4K 屏上的主观差异，只有 AVIF 在高频纹理边缘会出现轻微涂抹，其余两版在正常观看距离上分不出来。</p>
+          <div class="compare">
+            <div class="h">JPEG 质量 90</div>
+            <div class="h alt">JPEG 质量 68</div>
+            <div class="c">6.8 MB，对角线纹理清晰，适合作为下载底稿</div>
+            <div class="c">2.9 MB，湖面倒影有块状断层，适合快速预览</div>
+            <div class="h">AVIF 等效质量</div>
+            <div class="h alt">同图 100% 放大观感</div>
+            <div class="c">1.4 MB，体积小，边缘偶有涂抹</div>
+            <div class="c">三版在 2 米观看距离难分，贴近屏幕才区分得开</div>
+          </div>
+          <p>由此得到的可反驳判断：<strong>对静态壁纸而言，质量因子低于 75 的 JPEG 不该作为桌面长期使用版本</strong>。反驳角度也有——如果你只在 1080p 屏上用，缩到 1920 宽之后，块状痕迹会被采样抹平，质量 68 完全够用。这取决于最终显示宽度，不取决于收藏时的屏幕。</p>
+
+          <h3>许可口径的三处说法差异</h3>
+          <p>人像图集里出现过的三种写法，含义并不重合。"可商用需署名"指署名后可用于商业项目；"仅个人使用"排除一切商业场景；"需另行申请"表示作者保留单独授权通道。11 月 3 日修正的 12 条图集中，有 5 条正是从"可商用"改成"仅个人使用"，转授权到期是直接原因。</p>
+          <p>争议集中在街头抓拍。<span class="ref">摄影师陈默</span>在 10 月 28 日的图集备注里写"画面人物不可辨识，视为无需肖像授权"，整理组的回应是"不可辨识需逐张确认，不批量套用"。这是两种立场，不是事实冲突：一个说判据可以放宽，一个说判据要逐张执行。转述到这里，推测部分留给读者——实际平台会不会接受"不可辨识"的说法，取决于具体发布渠道。</p>
+
+          <h3>把"可不可以用"拆成可核对清单</h3>
+          <p>每条图集详情页都挂了这张清单，逐项核对完再下载，比只看分辨率可靠。</p>
+          <ul class="verify">
+            <li>像素尺寸是否大于目标显示宽度，且不是放大插值得到</li>
+            <li>文件体积与同尺寸中位数的偏差是否在 30% 以内</li>
+            <li>许可类别是否写明，署名格式是否给出</li>
+            <li>人像类是否有肖像授权状态，街头抓拍是否逐张确认</li>
+            <li>拍摄参数是否完整，夜景是否附曝光时长与 ISO</li>
+            <li>产品图是否给多规格导出，白底是否为 255</li>
+          </ul>
+          <p>清单里第 2 条最容易被忽略。10 月 30 日抽查 50 张壁纸，有 7 张的体积低于中位数 45%，逐张放大后全部存在明显压缩痕迹。这 7 张在卡片上仍标着 4K，说明"标称分辨率"和"可用分辨率"是两件事。</p>
+
+        </div>
+      </section>
+
+      <!-- 体验指南 -->
+      <section class="section" id="guide" aria-labelledby="guideTitle">
+        <div class="section-head">
+          <h2 id="guideTitle">选图指南：从需求到下载五步</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <b>先定显示宽度，再定分辨率</b>
+            <p>27 寸 4K 屏横向 3840 像素，选图时原图宽度至少 3840。带鱼屏 3440×1440 则优先找 3440 以上宽度，避免拉伸变形。</p>
+          </li>
+          <li>
+            <b>查许可角标，别跳过</b>
+            <p>卡片角标三色：绿色可商用需署名，灰色仅个人使用，橙色需另行申请。商用项目遇到灰色直接换图，别尝试沟通。</p>
+          </li>
+          <li>
+            <b>看拍摄参数是否完整</b>
+            <p>风光类看焦距与光圈，判断景深是否合预期；夜景类看曝光时长与 ISO，判断噪点水平。参数缺失的图集，画质可信度打折。</p>
+          </li>
+          <li>
+            <b>放大到 100% 看纹理区</b>
+            <p>找画面里细节最密的区域，比如树叶、砖墙、水面倒影。块状断层、色块边缘发虚，都是压缩过度的信号。</p>
+          </li>
+          <li>
+            <b>下载后核对文件体积</b>
+            <p>5120×2880 的 JPEG，质量 90 通常在 5 MB 以上。若下载文件只有 1 MB 出头，说明导出时被二次压缩，需要回退换版本。</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section" id="faq" aria-labelledby="faqTitle">
+        <div class="section-head">
+          <h2 id="faqTitle">常见问题</h2>
+        </div>
+        <div class="faq">
+
+          <details>
+            <summary>横屏电脑壁纸多大分辨率才够用？<span class="pm" aria-hidden="true">+</span></summary>
+            <div class="a">取决于屏幕横向像素数。1920 宽屏选 1920×1080 起步，24 寸 2K 选 2560×1440，27 寸 4K 选 3840×2160 或 5120×2880。低于屏幕宽度会拉伸，高于宽度可以缩采样，后者更安全。</div>
+          </details>
+
+          <details>
+            <summary>标着 4K 的图集为什么放大后还是糊？<span class="pm" aria-hidden="true">+</span></summary>
+            <div class="a">像素数只是画布大小。压缩质量因子偏低、导出时二次压缩、原图本身是插值放大，都会让 4K 尺寸的图失去细节。看文件体积与同尺寸中位数差多少，是最快的初筛方法。</div>
+          </details>
+
+          <details>
+            <summary>可商用需署名的图，署名要写在哪？<span class="pm" aria-hidden="true">+</span></summary>
+            <div class="a">图集详情页底部给了署名格式，通常是"作者名 / 图集编号"。发布在网页时放在图片说明或页脚，印在物料上放在边缘可见位置。具体位置以作者给出的格式为准，不擅自省略编号。</div>
+          </details>
+
+          <details>
+            <summary>街头抓拍人像，脸看不清就能直接用吗？<span class="pm" aria-hidden="true">+</span></summary>
+            <div class="a">不能批量套用。画面人物不可辨识只是判断的一个条件，还需要逐张确认。若用于商业场景，建议优先选明确标注肖像授权状态的棚拍人像，街头抓拍留给个人练习或编辑用途。</div>
+          </details>
+
+          <details>
+            <summary>产品白底图怎么判断白底够不够干净？<span class="pm" aria-hidden="true">+</span></summary>
+            <div class="a">取背景区域看 RGB 值是否达到 255,255,255，再看主体边缘有无灰边。部分图集白底是 252 左右，上电商平台会被判定背景不纯，需要重新抠图。详情页会给背景色值，下载前核对。</div>
+          </details>
+
+          <details>
+            <summary>带鱼屏壁纸为什么单独分类？<span class="pm" aria-hidden="true">+</span></summary>
+            <div class="a">3440×1440 与 3840×2160 的长宽比不同，直接拉伸会让人物和建筑变形。单独分类后可按 21:9 裁剪，卡片上标注原图是否原生 3440 宽，还是从更宽画幅裁切得到。</div>
+          </details>
+
+        </div>
+      </section>
+
+      <!-- 用户评论 -->
+      <section class="section" id="comments" aria-labelledby="cmTitle">
+        <div class="section-head">
+          <h2 id="cmTitle">用户评论</h2>
+          <span class="more" style="color:var(--muted)">来自图集详情页</span>
+        </div>
+        <div class="comments">
+
+          <div class="comment">
+            <div class="who"><span class="avatar">林</span><b>林小满</b><time datetime="2026-11-08">11-08</time></div>
+            <p><span class="ref">W-2408 雪山湖</span>那张下载下来 6.2 MB，放大看湖面确实干净，这回没踩坑。</p>
+          </div>
+
+          <div class="comment">
+            <div class="who"><span class="avatar">周</span><b>周原</b><time datetime="2026-11-07">11-07</time></div>
+            <p><span class="ref">P-1102 陶瓷杯</span>的白底是 252 不是 255，上架时被系统打回，得自己再抠一遍。参数页要是能直接标背景色值就好了。</p>
+          </div>
+
+          <div class="comment">
+            <div class="who"><span class="avatar">阿</span><b>阿岚</b><time datetime="2026-11-06">11-06</time></div>
+            <p>整体还行，就是分类名有点绕，"棚拍人像写真"和"街头抓拍人像"分开以后，找图反而多点了两下。</p>
+          </div>
+
+          <div class="comment">
+            <div class="who"><span class="avatar">陈</span><b>陈默</b><time datetime="2026-11-05">11-05</time></div>
+            <p><span class="ref">N-0912 高架车流</span>曝光参数写得准，15 秒 ISO 100，我按这个参数去同位置拍了一次，光轨长度基本一致。</p>
+          </div>
+
+          <div class="comment">
+            <div class="who"><span class="avatar">苏</span><b>苏禾</b><time datetime="2026-11-04">11-04</time></div>
+            <p><span class="ref">S-0721 雨后石板路</span>许可标"待确认"太含糊了，问了两次作者都没回，最后换图了。</p>
+          </div>
+
+          <div class="comment">
+            <div class="who"><span class="avatar">何</span><b>何嘉</b><time datetime="2026-11-03">11-03</time></div>
+            <p>11 月 3 日那批许可修正挺及时，之前差点把一张"仅个人使用"的图放进商用海报。</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 相关资讯 -->
+      <section class="section" id="news" aria-labelledby="newsTitle">
+        <div class="section-head">
+          <h2 id="newsTitle">相关资讯</h2>
+        </div>
+        <div class="news">
+          <article>
+            <h3>城市夜景分类完成长曝光与高感拆分</h3>
+            <p><span class="src">来源：整理组内部日志 · 11-05</span>　216 条夜景图集按曝光方式重新归档，长曝光 132 条、高感 84 条。</p>
+          </article>
+          <article>
+            <h3>AVIF 格式在壁纸类图集中的占比升至 18%</h3>
+            <p><span class="src">来源：格式统计表 · 11-02</span>　较 10 月初提升 7 个百分点，主要集中在 5120×2880 档。</p>
+          </article>
+          <article>
+            <h3>带鱼屏筛选标签上线，覆盖 186 条壁纸</h3>
+            <p><span class="src">来源：分类更新记录 · 10-30</span>　可按 3440×1440 原生画幅与裁切画幅二次过滤。</p>
+          </article>
+          <article>
+            <h3>人像图集转授权到期，5 条口径改为仅个人使用</h3>
+            <p><span class="src">来源：许可修正记录 · 11-03</span>　涉及图集编号 P-0812、P-0833 等 5 条，署名格式同步撤回。</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- 相关推荐 -->
+      <section class="section" id="related" aria-labelledby="relTitle">
+        <div class="section-head">
+          <h2 id="relTitle">相关推荐</h2>
+        </div>
+        <div class="tags">
+          <a href="/#pick">5120×2880 横屏壁纸合集</a>
+          <a href="/#pick">4K 竖屏手机壁纸</a>
+          <a href="/#pick">3440×1440 带鱼屏壁纸</a>
+          <a href="/#pick">棚拍人像柔光布光</a>
+          <a href="/#pick">城市夜景长曝光参数</a>
+          <a href="/#pick">产品静物白底主图</a>
+          <a href="/#pick">可商用需署名图集</a>
+          <a href="/#guide">压缩质量因子判断法</a>
+        </div>
+      </section>
+
+      <!-- 榜单 + 时间线 -->
+      <section class="section" id="rank" aria-labelledby="rankTitle">
+        <div class="section-head">
+          <h2 id="rankTitle">本周下载榜与归档时间线</h2>
+        </div>
+
+        <h3 style="font-size:var(--fs-h3);margin:.2rem 0 .7rem">下载量前五图集（11 月 2 日至 11 月 8 日）</h3>
+        <ol class="rank">
+          <li>
+            <span class="rk">01</span>
+            <span class="nm"><b>雪山湖泊 4K 横屏壁纸</b><small>W-2408 · 5120×2880</small></span>
+            <span class="bar" aria-hidden="true"><i style="width:92%"></i></span>
+          </li>
+          <li>
+            <span class="rk">02</span>
+            <span class="nm"><b>高架车流·夜景光轨</b><small>N-0912 · 6000×4000</small></span>
+            <span class="bar" aria-hidden="true"><i style="width:78%"></i></span>
+          </li>
+          <li>
+            <span class="rk">03</span>
+            <span class="nm"><b>陶瓷杯·纯白电商主图</b><small>P-1102 · 1200×1200</small></span>
+            <span class="bar" aria-hidden="true"><i style="width:64%"></i></span>
+          </li>
+          <li>
+            <span class="rk">04</span>
+            <span class="nm"><b>杉林晨雾·斜射光束</b><small>F-0533 · 5472×3648</small></span>
+            <span class="bar" aria-hidden="true"><i style="width:51%"></i></span>
+          </li>
+          <li>
+            <span class="rk">05</span>
+            <span class="nm"><b>棚拍人像·柔光侧脸组</b><small>R-1102 · 5472×3648</small></span>
+            <span class="bar" aria-hidden="true"><i style="width:43%"></i></span>
+          </li>
+        </ol>
+
+        <h3 style="font-size:var(--fs-h3);margin:1.4rem 0 .7rem">图集归档流程时间线</h3>
+        <ul class="timeline">
+          <li>
+            <time datetime="2026-10-12">10-12</time>
+            <b>拍摄参数录入完成</b>
+            <p>新增图集统一填焦距、光圈、快门、ISO 四项，缺项标记为"待补"。</p>
+          </li>
+          <li>
+            <time datetime="2026-10-19">10-19</time>
+            <b>压缩质量与体积比对</b>
+            <p>按同尺寸中位数筛出偏差超 30% 的条目，逐张放大复查。</p>
+          </li>
+          <li>
+            <time datetime="2026-10-26">10-26</time>
+            <b>许可口径二次核对</b>
+            <p>人像类逐条确认肖像授权状态，街头抓拍单独列"待确认"清单。</p>
+          </li>
+          <li>
+            <time datetime="2026-11-03">11-03</time>
+            <b>分类与标签同步</b>
+            <p>夜景拆分、带鱼屏标签、许可修正三批变更同日上线。</p>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+
+    <!-- 侧栏 -->
+    <aside class="side" aria-label="侧栏导航与推荐">
+
+      <div class="side-card">
+        <h3>栏目导航</h3>
+        <ul class="toc" id="toc">
+          <li><a href="/#overview">图库概览</a></li>
+          <li><a href="/#pick">精选图集推荐</a></li>
+          <li><a href="/#updates">最新更新记录</a></li>
+          <li><a href="/#cats">分类索引</a></li>
+          <li><a href="/#deep">深度解析</a></li>
+          <li><a href="/#guide">选图指南</a></li>
+          <li><a href="/#faq">常见问题</a></li>
+          <li><a href="/#comments">用户评论</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#related">相关推荐</a></li>
+          <li><a href="/#rank">下载榜与时间线</a></li>
+        </ul>
+      </div>
+
+      <div class="side-card">
+        <h3>本周热门图集</h3>
+        <ul class="side-list">
+          <li><a href="/#pick">雪山湖泊 4K 横屏壁纸</a><span class="n">W-2408</span></li>
+          <li><a href="/#pick">高架车流·夜景光轨</a><span class="n">N-0912</span></li>
+          <li><a href="/#pick">陶瓷杯·纯白电商主图</a><span class="n">P-1102</span></li>
+          <li><a href="/#pick">杉林晨雾·斜射光束</a><span class="n">F-0533</span></li>
+          <li><a href="/#pick">棚拍人像·柔光侧脸组</a><span class="n">R-1102</span></li>
+        </ul>
+      </div>
+
+      <div class="side-card">
+        <h3>选图速查</h3>
+        <ul class="side-list">
+          <li><span>27 寸 4K 屏</span><span class="n">≥3840 宽</span></li>
+          <li><span>带鱼屏 21:9</span><span class="n">3440×1440</span></li>
+          <li><span>手机竖屏</span><span class="n">≥1440 宽</span></li>
+          <li><span>桌面长期使用</span><span class="n">JPEG 质量 ≥75</span></li>
+          <li><span>电商主图白底</span><span class="n">RGB 255</span></li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="/#top" aria-label="返回首页" style="margin-bottom:.4rem">
+          <svg viewBox="0 0 64 64" width="32" height="32" role="img" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#f2e7c9"/>
+            <rect x="12" y="16" width="40" height="32" rx="6" fill="none" stroke="#1f5d4c" stroke-width="3"/>
+            <circle cx="25" cy="28" r="5" fill="#c8792a"/>
+            <path d="M16 44l12-13 9 9 6-5 7 9z" fill="#1f5d4c"/>
+          </svg>
+          <span class="brand-name">西西高清图片</span>
+        </a>
+        <p class="footer-pos">图集持续按"像素、体积、许可"三项复核，标注清晰的图集才进入推荐位。</p>
+      </div>
+      <div>
+        <h3>题材入口</h3>
+        <ul>
+          <li><a href="/#pick">横屏电脑壁纸</a></li>
+          <li><a href="/#pick">棚拍人像写真</a></li>
+          <li><a href="/#pick">城市夜景长曝光</a></li>
+          <li><a href="/#pick">自然风光海岸</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>使用入口</h3>
+        <ul>
+          <li><a href="/#guide">选图五步指南</a></li>
+          <li><a href="/#deep">压缩质量判断</a></li>
+          <li><a href="/#faq">许可与署名 FAQ</a></li>
+          <li><a href="/#cats">分类索引</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>站点信息</h3>
+        <ul>
+          <li>示例图集：1,268 组</li>
+          <li>更新时间：2026-11-08</li>
+          <li>内容性质：示例数据与整理记录</li>
+          <li>图片演示：picsum.photos 随机占位</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-note">
+      <span>页面内容含示例条目与整理组记录，图集编号、作者名及许可状态为演示用途，正式使用前请以原作者授权为准。</span>
+      <span>© 2026 西西高清图片 · 全部文字与版式版权所有</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* 移动端菜单 */
+  var menuBtn = document.getElementById('menuBtn');
+  var nav = document.getElementById('mainNav');
+  if(menuBtn && nav){
+    menuBtn.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A' && window.matchMedia('(max-width:820px)').matches){
+        nav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* 本地搜索 */
+  var input = document.getElementById('q');
+  var result = document.getElementById('searchResult');
+  var index = [
+    {t:'雪山湖泊 4K 横屏壁纸', k:'横屏壁纸 5120×2880 4K 雪山 壁纸', id:'/#pick'},
+    {t:'棚拍人像·柔光侧脸组', k:'人像写真 棚拍 柔光 肖像授权', id:'/#pick'},
+    {t:'高架车流·夜景光轨', k:'城市夜景 长曝光 光轨 15秒', id:'/#pick'},
+    {t:'杉林晨雾·斜射光束', k:'自然风光 森林 晨雾 可商用 署名', id:'/#pick'},
+    {t:'陶瓷杯·纯白电商主图', k:'产品静物 白底 电商主图 800×800', id:'/#pick'},
+    {t:'雨后石板路·街头抓拍', k:'街头人像 抓拍 许可待确认', id:'/#pick'},
+    {t:'图库概览', k:'分类 壁纸 人像 夜景 风光 静物 概览', id:'/#overview'},
+    {t:'最新更新记录', k:'更新 11月8日 壁纸 静物 夜景', id:'/#updates'},
+    {t:'分类索引', k:'横屏电脑壁纸 带鱼屏 产品静物白底图 分类', id:'/#cats'},
+    {t:'深度解析：分辨率达标不等于能用', k:'压缩 质量因子 JPEG AVIF 分辨率', id:'/#deep'},
+    {t:'选图指南', k:'步骤 显示宽度 许可 参数 100% 纹理', id:'/#guide'},
+    {t:'常见问题', k:'FAQ 分辨率 署名 肖像 白底 带鱼屏', id:'/#faq'},
+    {t:'用户评论', k:'评论 反馈 下载 图集', id:'/#comments'},
+    {t:'相关资讯', k:'资讯 夜景拆分 AVIF 带鱼屏 许可修正', id:'/#news'},
+    {t:'相关推荐', k:'推荐 标签 壁纸 人像 夜景', id:'/#related'},
+    {t:'下载榜与时间线', k:'榜单 热门 下载量 时间线 归档', id:'/#rank'}
+  ];
+
+  function esc(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c];
+    });
+  }
+
+  function doSearch(){
+    if(!input || !result) return;
+    var q = input.value.trim().toLowerCase();
+    if(!q){ result.classList.remove('show'); result.innerHTML=''; return; }
+    var hits = index.filter(function(it){
+      return (it.t + ' ' + it.k).toLowerCase().indexOf(q) !== -1;
+    }).slice(0,6);
+    if(hits.length){
+      result.innerHTML = hits.map(function(it){
+        return '<li><a href="' + it.id + '">' + esc(it.t) + '</a></li>';
+      }).join('');
+    }else{
+      result.innerHTML = '<li class="empty">没有找到与“' + esc(q) + '”相关的图集或栏目，试试“壁纸”“人像”“白底”。</li>';
+    }
+    result.classList.add('show');
+  }
+
+  if(input){
+    input.addEventListener('input', doSearch);
+    input.addEventListener('focus', doSearch);
+    document.addEventListener('click', function(e){
+      if(!e.target.closest('.search')) result.classList.remove('show');
+    });
+  }
+
+  /* 滚动高亮 */
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+  var targets = tocLinks.map(function(a){
+    var id = a.getAttribute('href').replace('/#','');
+    return document.getElementById(id);
+  }).filter(Boolean);
+
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#mainNav a'));
+
+  function setActive(id){
+    tocLinks.forEach(function(a){
+      a.classList.toggle('is-active', a.getAttribute('href') === '/#' + id);
+    });
+    navLinks.forEach(function(a){
+      a.classList.toggle('is-active', a.getAttribute('href') === '/#' + id);
+    });
+  }
+
+  if('IntersectionObserver' in window && targets.length){
+    var io = new IntersectionObserver(function(entries){
+      var vis = entries.filter(function(e){ return e.isIntersecting; });
+      if(vis.length){
+        vis.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+        setActive(vis[0].target.id);
+      }
+    }, {rootMargin:'-90px 0px -62% 0px', threshold:0});
+    targets.forEach(function(t){ io.observe(t); });
+  }
+
+  /* 回到顶部 */
+  var toTop = document.getElementById('toTop');
+  if(toTop){
+    var ticking = false;
+    window.addEventListener('scroll', function(){
+      if(ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function(){
+        if(window.scrollY > 520){ toTop.classList.add('show'); }
+        else{ toTop.classList.remove('show'); }
+        ticking = false;
+      });
+    }, {passive:true});
+    toTop.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+    });
+  }
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "name":"西西高清图片",
+      "inLanguage":"zh-CN",
+      "description":"聚焦高清图片资源整理与筛选，收录横屏壁纸、人像摄影、城市夜景、自然风光、产品静物等示例图集，标注分辨率、许可与拍摄参数。"
+    },
+    {
+      "@type":"FAQPage",
+      "inLanguage":"zh-CN",
+      "mainEntity":[
+        {
+          "@type":"Question",
+          "name":"横屏电脑壁纸多大分辨率才够用？",
+          "acceptedAnswer":{"@type":"Answer","text":"取决于屏幕横向像素数。1920 宽屏选 1920×1080 起步，24 寸 2K 选 2560×1440，27 寸 4K 选 3840×2160 或 5120×2880。低于屏幕宽度会拉伸，高于宽度可以缩采样，后者更安全。"}
+        },
+        {
+          "@type":"Question",
+          "name":"标着 4K 的图集为什么放大后还是糊？",
+          "acceptedAnswer":{"@type":"Answer","text":"像素数只是画布大小。压缩质量因子偏低、导出时二次压缩、原图本身是插值放大，都会让 4K 尺寸的图失去细节。看文件体积与同尺寸中位数差多少，是最快的初筛方法。"}
+        },
+        {
+          "@type":"Question",
+          "name":"可商用需署名的图，署名要写在哪？",
+          "acceptedAnswer":{"@type":"Answer","text":"图集详情页底部给了署名格式，通常是作者名加图集编号。发布在网页时放在图片说明或页脚，印在物料上放在边缘可见位置。具体位置以作者给出的格式为准，不擅自省略编号。"}
+        },
+        {
+          "@type":"Question",
+          "name":"街头抓拍人像，脸看不清就能直接用吗？",
+          "acceptedAnswer":{"@type":"Answer","text":"不能批量套用。画面人物不可辨识只是判断的一个条件，还需要逐张确认。若用于商业场景，建议优先选明确标注肖像授权状态的棚拍人像，街头抓拍留给个人练习或编辑用途。"}
+        },
+        {
+          "@type":"Question",
+          "name":"产品白底图怎么判断白底够不够干净？",
+          "acceptedAnswer":{"@type":"Answer","text":"取背景区域看 RGB 值是否达到 255,255,255，再看主体边缘有无灰边。部分图集白底是 252 左右，上电商平台会被判定背景不纯，需要重新抠图。详情页会给背景色值，下载前核对。"}
+        },
+        {
+          "@type":"Question",
+          "name":"带鱼屏壁纸为什么单独分类？",
+          "acceptedAnswer":{"@type":"Answer","text":"3440×1440 与 3840×2160 的长宽比不同，直接拉伸会让人物和建筑变形。单独分类后可按 21:9 裁剪，卡片上标注原图是否原生 3440 宽，还是从更宽画幅裁切得到。"}
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+                                               </html>
